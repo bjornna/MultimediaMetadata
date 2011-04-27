@@ -19,15 +19,17 @@ public class Person implements Serializable {
      */
 
     private static final long serialVersionUID = 4128826005572169599L;
+
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(name = "picasa_id", unique = true)
     private String picasaId;
     private String name;
     private String email;
     private String display;
     private Date modifiedTime;
 
-    @Id
-    @GeneratedValue
     public Long getId() {
 	return id;
     }
@@ -77,7 +79,7 @@ public class Person implements Serializable {
 	this.picasaId = picasaId;
     }
 
-    @Column(name = "picasa_id", unique = true)
+    
     public String getPicasaId() {
 	return picasaId;
     }
