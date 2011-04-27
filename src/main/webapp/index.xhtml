@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/resources/forge-template.xhtml">
+
+	<ui:param name="pageTitle" value="Index for Hygga Picture Service" />
+
+	<ui:define name="header">
+		Hygga Picture Service
+	</ui:define>
+
+	<ui:define name="subheader">
+Family picture organizer
+	</ui:define>
+
+	<ui:define name="footer">
+Footer
+	</ui:define>
+
+	<ui:define name="left">
+		<h3>Hygga Picture ServiceGet involved - this is fine</h3>
+		<p>Purpose: Build a picture organizer for family</p>
+		<ul>
+		<li>Find all pictures where Mia is 1 year old</li>
+		<li>Find all pictures taken on Hygga</li>
+		</ul>
+		<h3>Useful links</h3>
+		<ul>
+			<li>Seam 3: <a href="http://seamframework.org/Seam3">Home</a></li>
+			<li>JBoss.org: <a href="http://jboss.org">Home</a></li>
+			<li>Forge Reference Guide: <a href="http://docs.jboss.org/forge/snapshot/reference/en-US/html/">html</a>, 
+			<a href="http://docs.jboss.org/forge/snapshot/reference/en-US/html_single/">printer-friendly</a></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="main">
+	<h3>Picture Service</h3>
+	<p>The organizer for all your picture</p>
+		<ol>
+			<li><code>Shelf - a collection of album</code></li>
+			<li><code>Album - a collection of pictures</code></li>
+			<li><code>Picture - representation of a given picture</code></li>
+		</ol>
+	</ui:define>
+
+</ui:composition>
+</html>
+
