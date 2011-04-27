@@ -7,13 +7,13 @@ import javax.ejb.EJB;
 
 import junit.framework.Assert;
 
-import org.examples.FastShelfImporter;
 import org.hygga.pictureservice.ShelfFromXml;
 import org.hygga.pictureservice.ShelfService;
 import org.hygga.pictureservice.domain.Album;
 import org.hygga.pictureservice.domain.Picture;
 import org.hygga.pictureservice.domain.Shelf;
 import org.hygga.util.DirectoryFileNameFilter;
+import org.hygga.util.FastShelfImporter;
 import org.hygga.util.HyggaRuntimeException;
 import org.hygga.util.PictureFileFilter;
 import org.jboss.arquillian.api.Deployment;
