@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import junit.framework.Assert;
 
-import org.examples.TemperatureConverter;
+import org.arquillian.examples.TemperatureConverter;
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ArchivePaths;

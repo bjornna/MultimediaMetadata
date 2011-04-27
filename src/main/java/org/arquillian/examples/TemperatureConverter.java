@@ -1,4 +1,4 @@
-package org.examples;
+package org.arquillian.examples;
 
 import javax.ejb.Stateless;
 
