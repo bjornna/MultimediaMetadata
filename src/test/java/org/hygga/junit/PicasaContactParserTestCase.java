@@ -28,9 +28,10 @@ public class PicasaContactParserTestCase {
     public void testParseTestContactsXml() {
 	List<Person> result = parser.parseContacts(contactsXML);
 	Assert.assertNotNull(result);
-	Assert.assertTrue(result.size() == 1);
+	Assert.assertTrue(result.size() == 2);
 	Assert.assertEquals("bjornna@gmail.com", result.get(0).getEmail());
 	Assert.assertEquals("ce40d3d32b8e98c1", result.get(0).getPicasaId());
+	Assert.assertEquals("Bjørn Næss", result.get(0).getName());
     }
 
     @Test

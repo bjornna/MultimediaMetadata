@@ -47,10 +47,10 @@ public class PicasaContactBrowser {
 	for (int i = 0; i < contactsNodes.getLength(); i++) {
 	    Node node = contactsNodes.item(i);
 	    Element element = (Element) node;
-
 	    Person contact = new Person();
 	    contact.setPicasaId(element.getAttribute("id"));
 	    contact.setName(element.getAttribute("name"));
+	    contact.setEmail(element.getAttribute("email0"));
 	    contact.setDisplay(element.getAttribute("display"));
 	    contact.setModifiedTime(createModifiedTime(element
 		    .getAttribute("modified_time")));
