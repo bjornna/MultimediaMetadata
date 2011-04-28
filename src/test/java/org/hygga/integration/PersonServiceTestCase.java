@@ -7,16 +7,7 @@ import javax.ejb.EJB;
 import junit.framework.Assert;
 
 import org.hygga.pictureservice.PersonService;
-import org.hygga.pictureservice.ShelfFromXml;
-import org.hygga.pictureservice.ShelfService;
-import org.hygga.pictureservice.domain.Album;
 import org.hygga.pictureservice.domain.Person;
-import org.hygga.pictureservice.domain.Picture;
-import org.hygga.pictureservice.domain.Shelf;
-import org.hygga.util.DirectoryFileNameFilter;
-import org.hygga.util.FastShelfImporter;
-import org.hygga.util.HyggaRuntimeException;
-import org.hygga.util.PictureFileFilter;
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ArchivePaths;
