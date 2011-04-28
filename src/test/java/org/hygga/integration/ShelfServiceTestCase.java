@@ -1,6 +1,7 @@
 package org.hygga.integration;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -43,6 +44,9 @@ public class ShelfServiceTestCase {
 			PictureFileFilter.class, DirectoryFileNameFilter.class)
 		.addAsManifestResource(EmptyAsset.INSTANCE,
 			ArchivePaths.create("beans.xml"))
+		.addAsResource(
+			new File("src/test/resources/shelf_xml/shelf.xml"),
+			"shelf.xml")
 		.addAsManifestResource("META-INF/test-persistence.xml",
 			ArchivePaths.create("persistence.xml"));
 
@@ -63,12 +67,12 @@ public class ShelfServiceTestCase {
 
     @Test
     public void testCanPersistFromXml() {
-	String shelfXMLFile = "/C:/Users/bna/git_workspace/PictureService/src/test/resources/shelf_xml/shelf.xml";
 	String s_name = "pictures";
 	String s_path = "/C:/Users/bna/tmp/pictures/";
 	ShelfFromXml shelfFromXml = ShelfFromXml.instance();
-
-	Shelf shelf = shelfFromXml.fromXML(new File(shelfXMLFile));
+	InputStream inputStream = ShelfService.class
+		.getResourceAsStream("/shelf.xml");
+	Shelf shelf = shelfFromXml.fromXML(inputStream);
 	Assert.assertEquals(s_name, shelf.getName());
 	Assert.assertEquals(s_path, shelf.getPath());
 

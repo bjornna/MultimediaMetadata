@@ -23,4 +23,8 @@ public class ShelfService {
 	return em.createQuery("from Shelf shelf where shelf.name = :name")
 		.setParameter("name", name).getResultList();
     }
+    @SuppressWarnings("unchecked")
+    public List<Shelf> getShelfs(){
+	return em.createQuery("from Shelf").getResultList();
+    }
 }

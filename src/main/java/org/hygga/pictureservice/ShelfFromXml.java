@@ -1,6 +1,7 @@
 package org.hygga.pictureservice;
 
 import java.io.File;
+import java.io.InputStream;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -11,6 +12,7 @@ import javax.xml.bind.Unmarshaller;
 import org.hygga.pictureservice.domain.Shelf;
 import org.hygga.util.HyggaRuntimeException;
 import org.jboss.logging.Logger;
+
 @Stateless
 public class ShelfFromXml {
     private Logger log = Logger.getLogger(ShelfFromXml.class);
@@ -21,6 +23,17 @@ public class ShelfFromXml {
     public static ShelfFromXml instance() {
 	ShelfFromXml shelfFromXml = new ShelfFromXml();
 	return shelfFromXml;
+    }
+
+    public Shelf fromXML(InputStream inputStream) {
+	try {
+	    Unmarshaller unmarshaller = JAXBContext.newInstance(Shelf.class)
+		    .createUnmarshaller();
+	    return (Shelf) unmarshaller.unmarshal(inputStream);
+	} catch (JAXBException e) {
+	    throw new HyggaRuntimeException(
+		    "Could not load Shelf from XML input stream. ", e);
+	}
     }
 
     public Shelf fromXML(File file) {

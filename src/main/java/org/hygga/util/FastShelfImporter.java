@@ -117,7 +117,7 @@ public class FastShelfImporter {
     }
 
     public static void main(String[] args) {
-	String dir = "/Users/bna/Pictures/";
+	String dir = "src/test/resources/shelf";
 	FastShelfImporter importer = new FastShelfImporter(new File(dir));
 	importer.doImport();
 	importer.marshals("shelf_pictures.xml");
