@@ -16,12 +16,8 @@ import org.hygga.pictureservice.ExifExtractor;
 import org.hygga.pictureservice.domain.ExifTag;
 import org.hygga.pictureservice.domain.Picture;
 import org.hygga.pictureservice.domain.PictureWithExifData;
-import org.hygga.util.FileSizeConverter;
 import org.hygga.util.HyggaExeption;
 import org.junit.Test;
-
-import com.drew.imaging.jpeg.JpegProcessingException;
-import com.drew.imaging.jpeg.JpegSegmentReader;
 
 public class ExifExtractorTestCase {
 

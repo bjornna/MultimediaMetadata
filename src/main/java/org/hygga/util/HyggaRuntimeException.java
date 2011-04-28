@@ -11,4 +11,12 @@ public class HyggaRuntimeException extends RuntimeException {
 	super(string);
     }
 
+    public HyggaRuntimeException(String string, Exception e) {
+	super(string, e);
+    }
+
+    public HyggaRuntimeException(Exception e) {
+super(e);
+    }
+
 }
