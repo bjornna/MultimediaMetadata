@@ -57,7 +57,7 @@ public class ExifExtractorIntegrationTestCase {
 		.addPackage(
 			com.drew.metadata.jpeg.JpegReader.class.getPackage())
 
-		.addAsResource(new File("src/test/resources/img/IMG_9814.jpg"),
+		.addAsResource(new File("src/test/resources/img/IMG_9814_small.jpg"),
 			"img.jpg")
 		.addAsManifestResource(EmptyAsset.INSTANCE,
 			ArchivePaths.create("beans.xml"))
