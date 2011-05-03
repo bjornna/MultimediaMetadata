@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<h:panelGrid columns="2">
+	<h:panelGroup>
+	<h1>
+	<h:outputText value="#{shelf.name}" />
+	</h1>
+	</h:panelGroup>
+	<h:panelGroup>
+	<h:outputText value="#{shelf.path}" />
+	</h:panelGroup>
+	</h:panelGrid>
+</ui:composition>
+</html>

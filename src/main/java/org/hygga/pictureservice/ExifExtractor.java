@@ -20,12 +20,12 @@ import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifDirectory;
 
 public class ExifExtractor {
-private Logger log = Logger.getLogger(ExifExtractor.class);
+    private Logger log = Logger.getLogger(ExifExtractor.class);
+
     public ExifExtractor() {
 
     }
 
-    
     public List<ExifTag> extractFromFile(File file) throws HyggaExeption {
 	try {
 	    return extract(new FileInputStream(file));
@@ -35,8 +35,9 @@ private Logger log = Logger.getLogger(ExifExtractor.class);
 	}
 
     }
+
     @SuppressWarnings("unchecked")
-    public List<ExifTag> extract(InputStream file) throws HyggaExeption{
+    public List<ExifTag> extract(InputStream file) throws HyggaExeption {
 	log.debug("extract from inputstream");
 	try {
 	    Metadata metadata = JpegMetadataReader.readMetadata(file);
@@ -50,10 +51,31 @@ private Logger log = Logger.getLogger(ExifExtractor.class);
 		exifMetadatas.add(exifMetadata);
 
 	    }
-	    
+
 	    return exifMetadatas;
 	} catch (JpegProcessingException e) {
 	    throw new HyggaExeption(e);
 	}
+    }
+
+    public List<ExifTag> extractAllTags(InputStream inputStream) throws HyggaExeption {
+	try {
+	    Metadata metadata = JpegMetadataReader.readMetadata(inputStream);
+	    Iterator<Directory> directories = metadata.getDirectoryIterator();
+	    List<ExifTag> tags = new ArrayList<ExifTag>();
+	    while (directories.hasNext()) {
+		Directory dir = directories.next();
+		Iterator<Tag> tagIterator = dir.getTagIterator();
+		while (tagIterator.hasNext()) {
+		    Tag tag = tagIterator.next();
+		    ExifTag exifTag = new ExifTag(tag);
+		    tags.add(exifTag);
+		}
+	    }
+	    return tags;
+	} catch (JpegProcessingException e) {
+	    throw new HyggaExeption(e);
+	}
+
     }
 }

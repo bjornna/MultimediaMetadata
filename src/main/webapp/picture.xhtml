@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/resources/forge-template.xhtml">
+	<ui:param name="pageTitle" value="Picture Info" />
+
+	<ui:define name="header">Hygga Picture Service </ui:define>
+	<ui:define name="subheader">Picture Info</ui:define>
+	<ui:define name="footer">Footer</ui:define>
+	<ui:define name="left">
+		<h:outputLink value="album.jsf">
+			<f:param name="albumId" value="#{pictureHome.album.id}" />
+			<h:outputText value="#{pictureHome.album.name}" />
+		</h:outputLink>
+
+	</ui:define>
+	<ui:define name="main">
+		<h3>Picture <h:outputText value="#{pictureHome.picture.name}" /></h3>
+
+		<rich:panel header="PictureInfo">
+			<h:panelGrid columns="2">
+				<h:outputText value="Modified date" />
+				<h:outputText value="#{pictureHome.picture.modifiedDate}" />
+				<h:outputText value="Size" />
+				<h:outputText value="#{pictureHome.picture.sizeInKb}" />
+			</h:panelGrid>
+
+		</rich:panel>
+		<a
+			href="http://localhost:8080/PictureService/picture?pictureId=#{pictureHome.picture.id}">Vis
+		hele</a>
+		<img width="600"
+			src="http://localhost:8080/PictureService/picture?pictureId=#{pictureHome.picture.id}" />
+
+		<h:form id="exifForm">
+			<rich:collapsiblePanel header="ExifData" expanded="false"
+				switchType="client">
+				<h:dataTable id="exifData" value="#{pictureHome.allTags}"
+					var="exifTag">
+					<h:column id="dir">
+						<f:facet name="header">
+							<h:outputText value="Directory" />
+						</f:facet>
+						<h:outputText value="#{exifTag.directoryName}" />
+					</h:column>
+					<h:column id="name">
+						<f:facet name="header">
+							<h:outputText value="Name" />
+						</f:facet>
+						<h:outputText value="#{exifTag.name}" />
+					</h:column>
+					<h:column id="desc">
+						<f:facet name="header">
+							<h:outputText value="Description" />
+						</f:facet>
+						<h:outputText value="#{exifTag.description}" />
+					</h:column>
+
+				</h:dataTable>
+			</rich:collapsiblePanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

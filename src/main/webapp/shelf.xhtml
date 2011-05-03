@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/resources/forge-template.xhtml">
+	<ui:param name="pageTitle" value="Shelf Browser" />
+
+	<ui:define name="header">Hygga Picture Service </ui:define>
+	<ui:define name="subheader">Shelf Browser</ui:define>
+	<ui:define name="footer">Footer</ui:define>
+	<ui:define name="left">
+		<h3>Shelf list</h3>
+
+		<h:outputText value="No shelves available"
+			rendered="#{empty shelfController.shelfs}" />
+		<h:dataTable rendered="#{not empty shelfController.shelfs}"
+			value="#{shelfController.shelfs}" var="_shelf">
+			<h:column>
+				<f:facet name="header">Navn</f:facet>
+				<h:outputLink value="shelf.jsf">
+					<f:param name="shelfId" value="#{_shelf.id}"></f:param>
+					<h:outputText value="#{_shelf.name}" />
+				</h:outputLink>
+			</h:column>
+		</h:dataTable>
+
+	</ui:define>
+	<ui:define name="main">
+		<h3>Info about selected shelf</h3>
+
+		<h3>Selected shelf</h3>
+		<h:panelGroup rendered="#{shelfHome.set}">
+			<p><h:outputText value="#{shelfHome.instance.name}"
+				rendered="#{shelfHome.set}" /></p>
+			<p><h:outputText value="#{shelfHome.instance.path}" /></p>
+
+			<h4>Albums</h4>
+
+			<h:dataTable id="albums" value="#{shelfHome.albums}" var="album">
+				<h:column id="name">
+					<f:facet name="header">
+						<h:outputText value="Name" />
+
+					</f:facet>
+					<h:outputLink value="album.jsf">
+						<f:param name="albumId" value="#{album.id}" />
+						<h:outputText value="#{album.name}" />
+					</h:outputLink>
+
+				</h:column>
+			</h:dataTable>
+			<h4>Admin</h4>
+			<h:form id="actionOnShelfForm">
+				<h:commandButton action="#{shelfController.updateShelf()}"
+					value="Update shelf">
+					<f:param name="shelfId" value="#{shelfHome.instance.id}" />
+				</h:commandButton>
+			</h:form>
+		</h:panelGroup>
+		<h:outputText value="No shelf selected"
+			rendered="#{not shelfHome.set}" />
+		<h3>Add shelf</h3>
+		<h:form id="add_shelf">
+			<table>
+				<tr>
+
+					<td>Name</td>
+					<td><h:inputText value="#{newShelf.name}" /></td>
+				</tr>
+				<tr>
+					<td>Path</td>
+					<td><h:inputText id="shelfRegisterPath"
+						value="#{newShelf.path}" /> <h:message for="shelfRegisterPath" />
+					</td>
+				</tr>
+			</table>
+
+			<p><h:commandButton action="#{shelfRegistration.register}"
+				value="Registrer" /> <h:outputText value=" Registered!"
+				rendered="#{facesContext.postback and empty facesContext.messageList}"
+				style="color: green;" /></p>
+		</h:form>
+		<h:messages />
+	</ui:define>
+</ui:composition>
+</html>

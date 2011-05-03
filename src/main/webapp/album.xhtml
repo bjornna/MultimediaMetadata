@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/resources/forge-template.xhtml">
+	<ui:param name="pageTitle" value="Shelf Browser" />
+
+	<ui:define name="header">Hygga Picture Service </ui:define>
+	<ui:define name="subheader">Shelf Browser</ui:define>
+	<ui:define name="footer">Footer</ui:define>
+	<ui:define name="left">
+		<h:outputLink value="shelf.jsf">
+			<f:param name="shelfId" value="#{albumHome.shelf.id}" />
+			<h:outputText value="#{albumHome.shelf.name}" />
+		</h:outputLink>
+
+	</ui:define>
+	<ui:define name="main">
+		<h3>Album <h:outputText value="#{albumHome.album.name}" /></h3>
+		<p><h:outputText value="#{albumHome.album.absolutePath}" /></p>
+		<p><h:form id="albumAdmin">
+			<h:commandLink action="#{albumController.updateAlbum()}"
+				value="Oppdater album">
+				<f:param name="albumId" value="#{albumHome.album.id}"></f:param>
+			</h:commandLink>
+		</h:form></p>
+		<h:form id="albumPictureGrid">
+			<rich:dataGrid columns="6" elements="18"
+				value="#{albumHome.pictures}" var="_pic" id="picgrid">
+				<rich:panel>
+					<f:facet name="header">
+						<h:outputText value="#{_pic.name}" />
+					</f:facet>
+					<h:outputLink value="picture.jsf">
+						<f:param name="pictureId" value="#{_pic.id}" />
+
+						<img
+							src="http://localhost:8080/PictureService/thumb?pictureId=#{_pic.id}"
+							width="150" />
+					</h:outputLink>
+
+
+				</rich:panel>
+				<f:facet name="footer">
+					<rich:dataScroller for="picgrid" />
+				</f:facet>
+			</rich:dataGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -14,6 +14,7 @@ import org.hygga.pictureservice.ShelfService;
 import org.hygga.pictureservice.domain.Album;
 import org.hygga.pictureservice.domain.ExifTag;
 import org.hygga.pictureservice.domain.Picture;
+import org.hygga.pictureservice.domain.PictureWithExifData;
 import org.hygga.pictureservice.domain.Shelf;
 import org.hygga.util.DirectoryFileNameFilter;
 import org.hygga.util.HyggaExeption;
@@ -31,8 +32,8 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class ExifExtractorIntegrationTestCase {
     @Inject
-	ExifExtractor exifExtractor;
-	
+    ExifExtractor exifExtractor;
+
     @Deployment
     public static JavaArchive createTestArchive() {
 
@@ -42,6 +43,7 @@ public class ExifExtractorIntegrationTestCase {
 			ShelfService.class, Shelf.class, Album.class,
 			ShelfFromXml.class, Picture.class, HyggaExeption.class,
 			HyggaRuntimeException.class, PictureFileFilter.class,
+			PictureWithExifData.class,
 			DirectoryFileNameFilter.class)
 		.addPackage(com.drew.metadata.Tag.class.getPackage())
 		.addPackage(com.drew.lang.Rational.class.getPackage())
@@ -57,7 +59,8 @@ public class ExifExtractorIntegrationTestCase {
 		.addPackage(
 			com.drew.metadata.jpeg.JpegReader.class.getPackage())
 
-		.addAsResource(new File("src/test/resources/img/IMG_9814_small.jpg"),
+		.addAsResource(
+			new File("src/test/resources/img/IMG_9814_small.jpg"),
 			"img.jpg")
 		.addAsManifestResource(EmptyAsset.INSTANCE,
 			ArchivePaths.create("beans.xml"))
@@ -68,7 +71,7 @@ public class ExifExtractorIntegrationTestCase {
 
     @Test
     public void testParseExif() {
-	
+
 	InputStream is = ExifExtractor.class.getResourceAsStream("/img.jpg");
 	try {
 	    List<ExifTag> result = exifExtractor.extract(is);

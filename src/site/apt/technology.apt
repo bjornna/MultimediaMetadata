@@ -1,0 +1,9 @@
+Technology used
+
+* Arquillian
+
+  Integration testing is supported by Arquillian.
+    
+* CDI
+
+* GIT 

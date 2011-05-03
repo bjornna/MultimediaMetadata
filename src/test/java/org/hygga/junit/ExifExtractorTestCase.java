@@ -1,6 +1,7 @@
 package org.hygga.junit;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.net.URL;
@@ -65,6 +66,20 @@ public class ExifExtractorTestCase {
 	Long size = new Long(85948);
 	assertSize(size, pic);
 
+    }
+
+    @Test
+    public void testExtractAllMetadata() {
+	ExifExtractor exifExtractor = new ExifExtractor();
+	try {
+	    List<ExifTag> result = exifExtractor
+		    .extractAllTags(new FileInputStream(new File(IMG_3)));
+	    Assert.assertNotNull(result);
+	} catch (FileNotFoundException e) {
+	    Assert.fail(e.getMessage());
+	} catch (HyggaExeption e) {
+	    Assert.fail(e.getMessage());
+	}
     }
 
     private PictureWithExifData extract(File file) {

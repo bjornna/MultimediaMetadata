@@ -3,12 +3,17 @@ package org.hygga.picasa;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.List;
 
 import org.hygga.pictureservice.domain.Person;
 import org.hygga.util.HyggaRuntimeException;
 
-public class PicasaContactParser {
+public class PicasaContactParser implements Serializable{
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7524767785963334586L;
     private static final String PICASA_WIN_PATH = "/AppData/Local/Google/Picasa2/contacts";
     private static final String PICASA_CONTACTS_XML = "contacts.xml";
 
@@ -18,6 +23,8 @@ public class PicasaContactParser {
 
     }
 
+    
+    
     public File getPicasaContactsXML() {
 	if (contactsFile != null) {
 	    return contactsFile;
@@ -36,6 +43,7 @@ public class PicasaContactParser {
 	contactsFile = null;
 	return result;
     }
+    
 
     public List<Person> parseContacts() {
 	File file = getPicasaContactsXML();

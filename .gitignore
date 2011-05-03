@@ -3,6 +3,7 @@
 *.log.*
 
 target/*
+src/main/webapp/WEB-INF/lib/*
 .settings/*
 .project
 .classpath

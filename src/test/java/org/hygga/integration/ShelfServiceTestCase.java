@@ -57,7 +57,9 @@ public class ShelfServiceTestCase {
 	Shelf shelf = new Shelf();
 	shelf.setName(NAME);
 	shelf.setPath(PATH);
-	shelfService.storeAndFlush(shelf);
+	Shelf indb = shelfService.storeAndFlush(shelf);
+	Assert.assertNotNull(indb);
+	Assert.assertNotNull("ID is null", indb.getId());
 	List<Shelf> result = shelfService.findByName(NAME);
 	Assert.assertNotNull(result);
 	Assert.assertTrue(result.size() == 1);

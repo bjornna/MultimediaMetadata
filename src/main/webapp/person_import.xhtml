@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/resources/forge-template.xhtml">
+	<ui:param name="pageTitle" value="Picture Info" />
+
+	<ui:define name="header">Hygga Picture Service </ui:define>
+	<ui:define name="subheader">Picture Info</ui:define>
+	<ui:define name="footer">Footer</ui:define>
+	<ui:define name="left">
+	</ui:define>
+	<ui:define name="main">
+
+		<h3>Personer</h3>
+
+		
+<h:form id="persons_save">
+<h:commandButton value="Save" action="#{personHome.saveAll()}" />
+</h:form>
+		<h:dataTable value="#{personHome.persons}" var="_person">
+			<h:column id="name">
+				<f:facet name="header">
+					<h:outputText value="Name" />
+				</f:facet>
+				<h:outputText value="#{_person.name}" />
+			</h:column>
+			<h:column id="picasa_id">
+			<f:facet name="header"><h:outputText value="picasaId" /></f:facet>
+			<h:outputText value="#{_person.picasaId}" />
+			</h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>
+</html>

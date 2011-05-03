@@ -1,8 +1,10 @@
 package org.hygga.pictureservice.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.inject.Model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +16,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-public class Shelf {
+@Model
+public class Shelf implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2410652159106414480L;
     @Id
     @GeneratedValue
     private Long id;
-    @Column(unique=true, nullable=false)
+    @Column(unique = true, nullable = false)
     private String name;
-    @Column(unique=true, nullable=false)
+    @Column(unique = true, nullable = false)
     private String path;
     @OneToMany(mappedBy = "shelf", cascade = CascadeType.REMOVE)
     @OrderBy("name asc")
@@ -33,8 +40,6 @@ public class Shelf {
     public void setId(Long id) {
 	this.id = id;
     }
-
-
 
     public List<Album> getAlbums() {
 	return albums;
@@ -64,8 +69,7 @@ public class Shelf {
     public String toString() {
 	StringBuilder builder = new StringBuilder();
 	builder.append("Shelf [id=").append(id).append(", name=").append(name)
-		.append(", path=").append(path).append(", albums=")
-		.append(albums).append("]");
+		.append(", path=").append(path).append("]");
 	return builder.toString();
     }
 
@@ -99,9 +103,10 @@ public class Shelf {
 	    return false;
 	return true;
     }
-    
 
-    
-  
+    public void add(Album album) {
+	albums.add(album);
+
+    }
 
 }
