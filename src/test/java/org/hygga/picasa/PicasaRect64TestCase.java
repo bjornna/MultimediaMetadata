@@ -2,8 +2,8 @@ package org.hygga.picasa;
 
 import junit.framework.Assert;
 
-import org.hygga.picasa.PicasaFace;
-import org.hygga.picasa.PicasaFacesRectUtil;
+import org.hygga.picasa.PicasaFaceRectangle;
+import org.hygga.picasa.PicasaFaceRectangleUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,11 +11,11 @@ public class PicasaRect64TestCase {
 
 	private final String rect64_with_parent = "rect64(795575e08caa873f)";
 	private final String rect64 = "795575e08caa873f";
-	private PicasaFacesRectUtil picasaFacesRectUtil = null;
+	private PicasaFaceRectangleUtil picasaFacesRectUtil = null;
 
 	@Before
 	public void setup() {
-		picasaFacesRectUtil = new PicasaFacesRectUtil();
+		picasaFacesRectUtil = new PicasaFaceRectangleUtil();
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class PicasaRect64TestCase {
 
 	@Test
 	public void testParseFace() {
-		PicasaFace face = picasaFacesRectUtil.parseRect64(rect64);
+		PicasaFaceRectangle face = picasaFacesRectUtil.parseRect64(rect64);
 		System.out.println("Face is " + face);
 		Assert.assertNotNull(face);
 		Assert.assertTrue(face.getBottom() > 0);

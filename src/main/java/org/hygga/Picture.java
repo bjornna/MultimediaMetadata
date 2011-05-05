@@ -9,8 +9,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import org.hygga.picasa.PicasaFace;
-import org.hygga.picasa.PicasaFacesRectUtil;
+import org.hygga.picasa.PicasaFaceRectangle;
+import org.hygga.picasa.PicasaFaceRectangleUtil;
 
 public class Picture extends JFrame{
 private String hex64 = "59e22b4b8ebe7fca";
@@ -25,7 +25,7 @@ private String pictureFile = "src/test/resources/shelf/2009.09.06-Hafjell_Downhi
     }
     public void initUI() throws IOException{
 	BufferedImage image = ImageIO.read(getImageStream());
-	PicasaFace face = new PicasaFacesRectUtil().parse(hex64);
+	PicasaFaceRectangle face = new PicasaFaceRectangleUtil().parse(hex64);
 	
 	PicturePanel picturePanel = new PicturePanel();
 	picturePanel.setImage(image);

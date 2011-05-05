@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import org.hygga.picasa.PicasaFace;
+import org.hygga.picasa.PicasaFaceRectangle;
 
 public class PicturePanel extends JPanel {
 
@@ -20,7 +20,7 @@ public class PicturePanel extends JPanel {
      */
     private static final long serialVersionUID = 6625742512771065288L;
     private BufferedImage image;
-    private PicasaFace face;
+    private PicasaFaceRectangle face;
 
     public PicturePanel() {
 	super();
@@ -73,11 +73,11 @@ public class PicturePanel extends JPanel {
 	return scaledImage;
     }
 
-    public void setFace(PicasaFace face) {
+    public void setFace(PicasaFaceRectangle face) {
 	this.face = face;
     }
 
-    public PicasaFace getFace() {
+    public PicasaFaceRectangle getFace() {
 	return face;
     }
 

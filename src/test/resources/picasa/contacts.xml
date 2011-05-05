@@ -11,4 +11,19 @@
 		<subject user="bjornna_lh" id="f976a9b8d207084"
 			person_id="ry60mT6ZxreMyYEt8GNZF469aJ1_2MXEhb1i87znFB0" />
 	</contact>
+	<contact id="4a0893db8454f145" name="Test PicasaContactFromIniTestCase 1"
+		display="Testperson (4a0893db8454f145)" modified_time="2011-04-16T14:59:17+01:00"
+		sync_enabled="1" email0="4a0893db8454f145@gmail.com">
+		<subject user="bjornna_lh" id="f976a9b8d207084"
+			person_id="ry60mT6ZxreMyYEt8GNZF469aJ1_2MXEhb1i87znFB0" />
+	</contact>
+	<contact id="eca0a7d736d273a7" name="Test PicasaContactFromIniTestCase"
+		display="Testperson (eca0a7d736d273a7)" modified_time="2011-04-16T14:59:17+01:00"
+		sync_enabled="1" email0="eca0a7d736d273a7@gmail.com">
+		<subject user="bjornna_lh" id="f976a9b8d207084"
+			person_id="ry60mT6ZxreMyYEt8GNZF469aJ1_2MXEhb1i87znFB0" />
+	</contact>
+
+
+
 </contacts>

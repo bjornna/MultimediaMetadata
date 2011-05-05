@@ -2,13 +2,12 @@ package org.hygga.junit;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-
 import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.Assert;
 
 import org.hygga.picasa.PicasaContactParser;
+import org.hygga.picasa.PicasaContacts;
 import org.hygga.pictureservice.domain.Person;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,12 +25,15 @@ public class PicasaContactParserTestCase {
 
     @Test
     public void testParseTestContactsXml() {
-	List<Person> result = parser.parseContacts(contactsXML);
+	PicasaContacts result = parser.parseContacts(contactsXML);
 	Assert.assertNotNull(result);
-	Assert.assertTrue(result.size() == 2);
-	Assert.assertEquals("bjornna@gmail.com", result.get(0).getEmail());
-	Assert.assertEquals("ce40d3d32b8e98c1", result.get(0).getPicasaId());
-	Assert.assertEquals("Bjørn Næss", result.get(0).getName());
+	Assert.assertTrue(result.getPersons().size() == 2);
+	String picasaId = "ce40d3d32b8e98c1";
+	Person person = result.get(picasaId);
+	Assert.assertNotNull("Person with picasaid: " + picasaId, person);
+	Assert.assertEquals("bjornna@gmail.com", person.getEmail());
+	Assert.assertEquals("ce40d3d32b8e98c1", person.getPicasaId());
+	Assert.assertEquals("Bjørn Næss", person.getName());
     }
 
     @Test
@@ -44,9 +46,9 @@ public class PicasaContactParserTestCase {
     @Test
     public void testFindPersonsFromUsersPicasaDir() throws SAXException, IOException,
 	    ParserConfigurationException {
-	List<Person> persons = parser.parseContacts();
+	PicasaContacts persons = parser.parseContacts();
 	Assert.assertNotNull(persons);
-	Assert.assertTrue(persons.size() > 1);
+	Assert.assertTrue(persons.getPersons().size() > 1);
 
     }
 
