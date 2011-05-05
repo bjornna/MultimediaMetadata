@@ -3,7 +3,6 @@ package org.hygga.pictureservice;
 import java.io.File;
 import java.util.Date;
 
-import org.hygga.pictureservice.domain.ExifTag;
 import org.hygga.util.HyggaExeption;
 import org.hygga.util.HyggaRuntimeException;
 import org.jboss.logging.Logger;
@@ -13,7 +12,6 @@ import com.drew.imaging.jpeg.JpegProcessingException;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.MetadataException;
-import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifDirectory;
 
 public class ExifExtractorBean {

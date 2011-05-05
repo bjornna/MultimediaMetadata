@@ -9,8 +9,6 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import org.hygga.picasa.PicasaFace;
 import org.hygga.picasa.PicasaFacesRectUtil;
 

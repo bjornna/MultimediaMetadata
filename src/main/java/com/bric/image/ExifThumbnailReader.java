@@ -414,7 +414,7 @@ public class ExifThumbnailReader {
     }
 
     static class IFD {
-	static Hashtable TYPE_LUT = new Hashtable();
+	static Hashtable<Integer, String> TYPE_LUT = new Hashtable<Integer, String>();
 	static {
 	    TYPE_LUT.put(new Integer(256), "Image Width");
 	    TYPE_LUT.put(new Integer(257), "Image Length");
@@ -507,7 +507,7 @@ public class ExifThumbnailReader {
 	    TYPE_LUT.put(new Integer(41996), "SubjectDistanceRange");
 	    TYPE_LUT.put(new Integer(42016), "ImageUniqueID");
 	}
-	Vector v = new Vector();
+	Vector<byte[][]> v = new Vector<byte[][]>();
 	IFD exifIFDPtr;
 	// IFD interopIFDPtr;
 	int size;

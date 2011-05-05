@@ -17,6 +17,7 @@ import org.hygga.pictureservice.domain.Album;
 import org.hygga.pictureservice.domain.Picture;
 import org.hygga.pictureservice.domain.Shelf;
 import org.hygga.util.DirectoryFileNameFilter;
+import org.hygga.util.HyggaExeption;
 import org.hygga.util.HyggaRuntimeException;
 import org.hygga.util.PictureFileFilter;
 import org.hygga.util.ShelfDoesNotExistException;
@@ -60,7 +61,7 @@ public class ShelfManagerTestCase {
 			ShelfDoesNotExistException.class,
 			DirectoryFileNameFilter.class, PictureFileFilter.class,
 			UpdateAlbumReport.class, PictureService.class,
-			HyggaRuntimeException.class)
+			HyggaRuntimeException.class, HyggaExeption.class)
 		.addPackage(Shelf.class.getPackage())
 		.addPackage(com.drew.metadata.Tag.class.getPackage())
 		.addPackage(com.drew.lang.Rational.class.getPackage())

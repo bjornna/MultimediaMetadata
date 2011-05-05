@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import com.bric.image.ExifThumbnailReader;
 
 public class Thumb extends JFrame {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6417349326881411420L;
     private String path = "src/test/resources/img/IMG_9826.jpg";
 
     public Thumb() {

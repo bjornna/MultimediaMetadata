@@ -10,7 +10,6 @@ import javax.inject.Inject;
 
 import org.hygga.pictureservice.PictureService;
 import org.hygga.pictureservice.ShelfManager;
-import org.hygga.pictureservice.domain.Album;
 import org.hygga.pictureservice.domain.Picture;
 
 @Model

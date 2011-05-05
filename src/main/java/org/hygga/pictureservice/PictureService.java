@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hygga.pictureservice.domain.Album;
-import org.hygga.pictureservice.domain.ExifTag;
 import org.hygga.pictureservice.domain.Picture;
 import org.hygga.pictureservice.domain.Shelf;
 import org.hygga.util.HyggaExeption;

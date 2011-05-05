@@ -72,12 +72,12 @@ jQuery.fn.rotate = function(angle, whence) {
 	// canvas.height=ho;
 
 	p.parentNode.replaceChild(canvas, p);
-}
+};
 
 jQuery.fn.rotateRight = function(angle) {
 	this.rotate(angle == undefined ? 90 : angle);
-}
+};
 
 jQuery.fn.rotateLeft = function(angle) {
 	this.rotate(angle == undefined ? -90 : -angle);
-}
+};

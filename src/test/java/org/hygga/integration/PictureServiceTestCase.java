@@ -10,7 +10,6 @@ import junit.framework.Assert;
 import org.hygga.pictureservice.ExifExtractorBean;
 import org.hygga.pictureservice.PictureService;
 import org.hygga.pictureservice.domain.Album;
-import org.hygga.pictureservice.domain.ExifTag;
 import org.hygga.pictureservice.domain.Picture;
 import org.hygga.pictureservice.domain.Shelf;
 import org.hygga.util.HyggaExeption;

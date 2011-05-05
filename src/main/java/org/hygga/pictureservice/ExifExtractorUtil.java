@@ -59,6 +59,7 @@ public class ExifExtractorUtil {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     public List<ExifTag> extractAllTags(InputStream inputStream) throws HyggaExeption {
 	try {
 	    Metadata metadata = JpegMetadataReader.readMetadata(inputStream);

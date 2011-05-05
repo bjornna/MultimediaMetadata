@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Remove;
-import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -25,9 +24,6 @@ public class Model implements Serializable {
 
     private List<Picture> pictures = new ArrayList<Picture>();
     private Logger log = Logger.getLogger(Model.class);
-    private Picture nextPicture;
-    private Picture prevPicture;
-
     @EJB
     private PictureService pictureService;
 
@@ -83,7 +79,6 @@ public class Model implements Serializable {
     }
 
     public void setPrevPicture(Picture prevPicture) {
-	this.prevPicture = prevPicture;
     }
 
     public Picture getPrevPicture() {
@@ -101,7 +96,6 @@ public class Model implements Serializable {
     }
 
     public void setNextPicture(Picture nextPicture) {
-	this.nextPicture = nextPicture;
     }
 
     public Picture getNextPicture() {

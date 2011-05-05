@@ -117,7 +117,7 @@ public class PictureHome implements Serializable {
 
     private void loadAllTags() {
 	if (!set) {
-	    allTags = Collections.EMPTY_LIST;
+	    allTags = Collections.emptyList();
 	    return;
 	}
 	ExifExtractorUtil exifExtractor = new ExifExtractorUtil();
@@ -126,9 +126,9 @@ public class PictureHome implements Serializable {
 		    pictureService.getAbsolutePathToPicture(pictureId)));
 	    allTags = exifExtractor.extractAllTags(fis);
 	} catch (HyggaExeption e) {
-	    allTags = java.util.Collections.EMPTY_LIST;
+	    allTags = Collections.emptyList();
 	} catch (FileNotFoundException e) {
-	    allTags = java.util.Collections.EMPTY_LIST;
+	    allTags = Collections.emptyList();
 	}
 
     }

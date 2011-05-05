@@ -54,6 +54,7 @@ public class ShelfHome {
  
 
 
+    @SuppressWarnings("unchecked")
     public List<Album> getAlbums() {
 	if(albums == null){
 	    albums = em.createQuery("select shelf.albums from Shelf shelf where shelf.id = :id").setParameter("id", getShelfId()).getResultList();
