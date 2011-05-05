@@ -27,7 +27,7 @@ private String pictureFile = "src/test/resources/shelf/2009.09.06-Hafjell_Downhi
     }
     public void initUI() throws IOException{
 	BufferedImage image = ImageIO.read(getImageStream());
-	PicasaFace face = new PicasaFacesRectUtil().parseRect64(hex64);
+	PicasaFace face = new PicasaFacesRectUtil().parse(hex64);
 	
 	PicturePanel picturePanel = new PicturePanel();
 	picturePanel.setImage(image);
