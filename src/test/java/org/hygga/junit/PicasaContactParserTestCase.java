@@ -27,7 +27,7 @@ public class PicasaContactParserTestCase {
     public void testParseTestContactsXml() {
 	PicasaContacts result = parser.parseContacts(contactsXML);
 	Assert.assertNotNull(result);
-	Assert.assertTrue(result.getPersons().size() == 2);
+	Assert.assertEquals(4, result.getPersons().size());
 	String picasaId = "ce40d3d32b8e98c1";
 	Person person = result.get(picasaId);
 	Assert.assertNotNull("Person with picasaid: " + picasaId, person);
