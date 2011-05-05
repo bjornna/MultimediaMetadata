@@ -33,6 +33,8 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
+import org.jboss.logging.Logger;
+
 import com.bric.io.CombinedInputStream;
 import com.bric.io.MeasuredInputStream;
 
@@ -41,6 +43,7 @@ import com.bric.io.MeasuredInputStream;
  */
 public class ExifThumbnailReader {
     private static boolean debug = false;
+    private static Logger log = Logger.getLogger(ExifThumbnailReader.class);
 
     /**
      * This extracts the thumbnail from a large JPEG, if it can be found. If a
@@ -144,8 +147,7 @@ public class ExifThumbnailReader {
 	read(in, b, 2, reverse);
 	if (!(b[0] == -1 && b[1] == -40)) {
 	    // this didn't have a SOI marker at the top: give up immediately.
-	    if (debug)
-		System.err.println("error 1");
+	    log.debug("error 1");
 	    return null;
 	}
 	// now we want to find an APP1 marker:
@@ -158,9 +160,8 @@ public class ExifThumbnailReader {
 	    read(in, b, 2, reverse);
 	}
 	if (!(b[0] == -1 && b[1] == -31)) {
-	    // we didn't get our APP1 marker
-	    if (debug)
-		System.err.println("error 1.5");
+
+log.debug("error 1.5 - we didn't get our APP1 marker");
 	    return null;
 	}
 
@@ -172,8 +173,7 @@ public class ExifThumbnailReader {
 		&& b[4] == 0 && b[5] == 0)) {
 	    // this didn't have "Exif" followed by a 0x00, so this isn't an exif
 	    // file.
-	    if (debug)
-		System.err.println("error 2");
+	    log.debug("error 2");
 	    return null;
 	}
 
@@ -183,15 +183,13 @@ public class ExifThumbnailReader {
 	} else if (b[0] == 77 && b[1] == 77) { // big endian
 	    // do nothing
 	} else {
-	    if (debug)
-		System.err.println("error 3: " + b[0] + " " + b[1]);
+	    log.debug("error 3: " + b[0] + " " + b[1]);
 	    return null;
 	}
 
 	read(in, b, 2, reverse);
 	if (!(b[0] == 0 && b[1] == 42)) { // required byte in TIFF header
-	    if (debug)
-		System.err.println("error 4");
+	    log.debug("error 4");
 	    return null;
 	}
 	read(in, b, 4, reverse); // position of zero-eth IFD
@@ -211,8 +209,7 @@ public class ExifThumbnailReader {
 		+ (b[2] & 0xff) * 256 + (b[3] & 0xff);
 
 	i0.resolveIFDs(in, reverse, offset);
-	if (debug)
-	    System.out.println(i0);
+log.debug(i0);
 
 	IFD i1 = null;
 	while (pos != 0 && (i1 == null || i1.getJPEGPointer() < 0)) {
@@ -229,8 +226,7 @@ public class ExifThumbnailReader {
 	    pos = i1.getJPEGPointer();
 	    int len = (int) i1.getJPEGLength();
 	    if (len == 0) {
-		if (debug)
-		    System.err.println("error 4.5");
+		log.debug("error 4.5");
 		return null;
 	    }
 	    byte[] thumbnailData = new byte[len];
@@ -239,8 +235,7 @@ public class ExifThumbnailReader {
 	    read(in, thumbnailData, len, false);
 	    if (!(thumbnailData[0] == -1 && thumbnailData[1] == -40)) {
 		// didn't start with a SOI marker: something's wrong
-		if (debug)
-		    System.err.println("error 5");
+		log.debug("error 5: didn't start with a SOI marker: something's wrong");
 		return null;
 	    }
 	    byte[] d = new byte[4];
