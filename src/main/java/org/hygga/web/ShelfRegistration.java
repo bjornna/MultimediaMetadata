@@ -34,7 +34,7 @@ public class ShelfRegistration {
     }
 
     public void register() {
-	log.infof("Regiser new shelf: %s", newShelf);
+	log.infof("Register new shelf: %s", newShelf);
 	if (pathExist()) {
 	    if (nameEmptyOrNull()) {
 		newShelf.setName(new File(newShelf.getPath()).getName());

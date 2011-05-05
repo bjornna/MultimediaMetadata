@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -13,8 +15,7 @@ import org.hygga.pictureservice.domain.Album;
 import org.hygga.pictureservice.domain.Picture;
 import org.hygga.pictureservice.domain.Shelf;
 
-@Named
-@javax.enterprise.context.ConversationScoped
+@Model
 public class AlbumHome implements Serializable{
 
     /**
@@ -28,6 +29,9 @@ public class AlbumHome implements Serializable{
     private boolean set = false;
     @PersistenceContext
     private EntityManager em;
+    
+    @Inject
+    private org.hygga.web.Model model;
 
     public boolean isSet() {
 	return set;
@@ -44,12 +48,16 @@ public class AlbumHome implements Serializable{
 	if (albumId != null && albumId > 0) {
 	    set = true;
 	    album = em.find(Album.class, albumId);
+	    
 	    pictures = em
 		    .createQuery(
 			    "select album.pictures from Album album where album.id = :id")
 		    .setParameter("id", albumId).getResultList();
 	    shelf = album.getShelf();
-
+	    model.setAlbum(album);
+	    model.setShelf(shelf);
+	    model.setPictures(pictures);
+	    
 	}
 
     }

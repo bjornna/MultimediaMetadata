@@ -3,6 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="/resources/forge-template.xhtml">
@@ -22,19 +23,53 @@
 		<h3>Picture <h:outputText value="#{pictureHome.picture.name}" /></h3>
 
 		<rich:panel header="PictureInfo">
-			<h:panelGrid columns="2">
-				<h:outputText value="Modified date" />
-				<h:outputText value="#{pictureHome.picture.modifiedDate}" />
-				<h:outputText value="Size" />
-				<h:outputText value="#{pictureHome.picture.sizeInKb}" />
-			</h:panelGrid>
+			<h:form id="picInfoForm">
+				<h:panelGrid columns="2">
+					<h:outputText value="ID" />
+					<h:outputText value="#{model.picture.id}" />
+					<h:outputText value="Modified date" />
+					<h:outputText value="#{model.picture.modifiedDate}" />
+					<h:outputText value="Size" />
+					<h:outputText value="#{model.picture.sizeInKb}" />
+					<h:outputText value="Create date" />
+					<h:outputText value="#{model.picture.createDate}" />
 
+				</h:panelGrid>
+				<h:commandButton value="Update exif"
+					action="#{model.updateExifDataOnCurrentPicture()}" />
+
+			</h:form>
 		</rich:panel>
-		<a
-			href="http://localhost:8080/PictureService/picture?pictureId=#{pictureHome.picture.id}">Vis
-		hele</a>
-		<img width="600"
-			src="http://localhost:8080/PictureService/picture?pictureId=#{pictureHome.picture.id}" />
+		<rich:panel header="Picture">
+			<input type="button" value="Rotate Left" name="RotateL"
+				class="inputSubmit" id="RotateL" onclick="$('#pic').rotateLeft();"></input>
+			<input type="button" class="inputSubmit" value="Rotate Right"
+				name="RotateR" id="RotateR" onclick="$('#pic').rotateRight();"></input>
+			<h:panelGrid columns="3">
+				<h:outputLink rendered="#{!empty model.prevPicture}"
+					id="prevPicLink" value="picture.jsf">
+					<f:param name="pictureId" value="#{model.prevPicture.id}" />
+					<img
+						src="http://localhost:8080/PictureService/thumb?pictureId=#{model.prevPicture.id}" />
+
+				</h:outputLink>
+				<h:outputLink id="currentTonextPicLink"
+					value="http://localhost:8080/PictureService/picture?pictureId=#{pictureHome.picture.id}">
+
+					<img width="600" name="pic" id="pic"
+						src="http://localhost:8080/PictureService/picture?pictureId=#{pictureHome.picture.id}" />
+				</h:outputLink>
+
+				<h:outputLink rendered="#{!empty model.nextPicture}"
+					id="nextPicLink" value="picture.jsf">
+					<f:param name="pictureId" value="#{model.nextPicture.id}" />
+					<img
+						src="http://localhost:8080/PictureService/thumb?pictureId=#{model.nextPicture.id}" />
+				</h:outputLink>
+
+			</h:panelGrid>
+		</rich:panel>
+
 
 		<h:form id="exifForm">
 			<rich:collapsiblePanel header="ExifData" expanded="false"

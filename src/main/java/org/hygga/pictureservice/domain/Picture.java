@@ -37,6 +37,9 @@ public class Picture implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
     
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    
     private long size;
 
     public Long getId() {
@@ -134,6 +137,14 @@ public class Picture implements Serializable {
 	} else if (!name.equals(other.name))
 	    return false;
 	return true;
+    }
+
+    public void setCreateDate(Date createDate) {
+	this.createDate = createDate;
+    }
+
+    public Date getCreateDate() {
+	return createDate;
     }
 
 }

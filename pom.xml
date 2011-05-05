@@ -13,7 +13,7 @@
 		<arquillian.version>1.0.0.Alpha5</arquillian.version>
 		<jboss-javaee6-spec.version>1.0.0.Final</jboss-javaee6-spec.version>
 		<seam.version>3.0.0.Final</seam.version>
-		     <org.richfaces.bom.version>4.0.0.Final</org.richfaces.bom.version>
+		<org.richfaces.bom.version>4.0.0.Final</org.richfaces.bom.version>
 		     <!-- Explicitly declaring the source encoding eliminates the following message: -->
         <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent! -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,13 +27,13 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			     <dependency>
-                <groupId>org.richfaces</groupId>
-                <artifactId>richfaces-bom</artifactId>
-                <version>${org.richfaces.bom.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
+			<dependency>
+				<groupId>org.richfaces</groupId>
+				<artifactId>richfaces-bom</artifactId>
+				<version>${org.richfaces.bom.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
@@ -79,14 +79,19 @@
 			<groupId>org.jboss.seam.rest</groupId>
 			<artifactId>seam-rest-impl</artifactId>
 		</dependency>
-		     <dependency>
-        <groupId>org.richfaces.ui</groupId>
-        <artifactId>richfaces-components-ui</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.richfaces.core</groupId>
-        <artifactId>richfaces-core-impl</artifactId>
-    </dependency>
+		<dependency>
+			<groupId>org.richfaces.ui</groupId>
+			<artifactId>richfaces-components-ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.richfaces.core</groupId>
+			<artifactId>richfaces-core-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>2.2.1</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -105,6 +110,13 @@
 		<repository>
 			<id>JBOSS_NEXUS</id>
 			<url>http://repository.jboss.org/nexus/content/groups/public</url>
+		</repository>
+
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Technology Maven Repository</name>
+			<url>http://repository.prime.com.tr</url>
+			<layout>default</layout>
 		</repository>
 	</repositories>
 	<build>

@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 import junit.framework.Assert;
 
-import org.hygga.pictureservice.ExifExtractor;
+import org.hygga.pictureservice.ExifExtractorUtil;
 import org.hygga.pictureservice.ShelfFromXml;
 import org.hygga.pictureservice.ShelfService;
 import org.hygga.pictureservice.domain.Album;
@@ -32,14 +32,14 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class ExifExtractorIntegrationTestCase {
     @Inject
-    ExifExtractor exifExtractor;
+    ExifExtractorUtil exifExtractor;
 
     @Deployment
     public static JavaArchive createTestArchive() {
 
 	return ShrinkWrap
 		.create(JavaArchive.class, "test.jar")
-		.addClasses(ExifExtractor.class, ExifTag.class,
+		.addClasses(ExifExtractorUtil.class, ExifTag.class,
 			ShelfService.class, Shelf.class, Album.class,
 			ShelfFromXml.class, Picture.class, HyggaExeption.class,
 			HyggaRuntimeException.class, PictureFileFilter.class,
@@ -72,7 +72,7 @@ public class ExifExtractorIntegrationTestCase {
     @Test
     public void testParseExif() {
 
-	InputStream is = ExifExtractor.class.getResourceAsStream("/img.jpg");
+	InputStream is = ExifExtractorUtil.class.getResourceAsStream("/img.jpg");
 	try {
 	    List<ExifTag> result = exifExtractor.extract(is);
 	    Assert.assertNotNull("No metadata", result);

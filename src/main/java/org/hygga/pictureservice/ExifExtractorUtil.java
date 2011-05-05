@@ -19,10 +19,10 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifDirectory;
 
-public class ExifExtractor {
-    private Logger log = Logger.getLogger(ExifExtractor.class);
+public class ExifExtractorUtil {
+    private Logger log = Logger.getLogger(ExifExtractorUtil.class);
 
-    public ExifExtractor() {
+    public ExifExtractorUtil() {
 
     }
 
@@ -35,6 +35,7 @@ public class ExifExtractor {
 	}
 
     }
+    
 
     @SuppressWarnings("unchecked")
     public List<ExifTag> extract(InputStream file) throws HyggaExeption {

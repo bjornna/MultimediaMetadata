@@ -13,7 +13,7 @@ import javax.xml.bind.Marshaller;
 
 import junit.framework.Assert;
 
-import org.hygga.pictureservice.ExifExtractor;
+import org.hygga.pictureservice.ExifExtractorUtil;
 import org.hygga.pictureservice.domain.ExifTag;
 import org.hygga.pictureservice.domain.Picture;
 import org.hygga.pictureservice.domain.PictureWithExifData;
@@ -42,7 +42,7 @@ public class ExifExtractorTestCase {
 	String url = "http://www.hygga.org/img/IMG_9814_small.jpg";
 	try {
 	    URL uri = new URL(url);
-	    ExifExtractor exifExtractor = new ExifExtractor();
+	    ExifExtractorUtil exifExtractor = new ExifExtractorUtil();
 	    List<ExifTag> result = exifExtractor.extract(uri.openStream());
 	    Assert.assertNotNull("Result is null from google", result);
 	    PictureWithExifData pic = createPictureWithExifMetadata(result);
@@ -70,7 +70,7 @@ public class ExifExtractorTestCase {
 
     @Test
     public void testExtractAllMetadata() {
-	ExifExtractor exifExtractor = new ExifExtractor();
+	ExifExtractorUtil exifExtractor = new ExifExtractorUtil();
 	try {
 	    List<ExifTag> result = exifExtractor
 		    .extractAllTags(new FileInputStream(new File(IMG_3)));
@@ -83,7 +83,7 @@ public class ExifExtractorTestCase {
     }
 
     private PictureWithExifData extract(File file) {
-	ExifExtractor exifExtractor = new ExifExtractor();
+	ExifExtractorUtil exifExtractor = new ExifExtractorUtil();
 	try {
 	    List<ExifTag> metadata = exifExtractor.extractFromFile(file);
 	    PictureWithExifData pic = createPictureWithExifMetadata(metadata);

@@ -14,14 +14,16 @@ and open the template in the editor.
 	<title>#{empty pageTitle ? '{#pageTitle}' : pageTitle}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="icon"   href="#{resource['favicon.ico']}" />
+	<link rel="icon" href="#{resource['favicon.ico']}" />
 	<link rel="stylesheet" href="#{resource['forge.css']}" type="text/css" />
+	<!-- <script type="text/javascript" src="scripts/jquery.js"></script>
+	 -->
+	<script type="text/javascript" src="scripts/jquery.rotate.js"></script>
 </h:head>
 
 <h:body id="top">
 	<div id="container">
-	<div id="header"><h:link outcome="/index.jsf"
-		value="Home" />
+	<div id="header"><h:link outcome="/index.jsf" value="Home" />
 	<h1><ui:insert name="header">{header}</ui:insert></h1>
 	<h2><ui:insert name="subheader">{subheader}</ui:insert></h2>
 	<br />
