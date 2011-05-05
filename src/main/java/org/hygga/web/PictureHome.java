@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hygga.pictureservice.ExifExtractor;
+import org.hygga.pictureservice.ExifExtractorUtil;
 import org.hygga.pictureservice.PictureService;
 import org.hygga.pictureservice.domain.Album;
 import org.hygga.pictureservice.domain.ExifTag;
@@ -37,6 +38,8 @@ public class PictureHome implements Serializable {
     @PersistenceContext
     EntityManager em;
 
+    @Inject
+    private org.hygga.web.Model model;
     private Picture picture;
     private Album album;
     private Long pictureId;
@@ -53,6 +56,8 @@ public class PictureHome implements Serializable {
 	    log.infof("Create picture with id = %s", pictureId);
 	    picture = em.find(Picture.class, pictureId);
 	    album = em.find(Album.class, picture.getAlbum().getId());
+	    model.setPicture(picture);
+	    model.setAlbum(album);
 
 	} else {
 	    log.infof("Picture id is not set = %s", pictureId);
@@ -89,7 +94,7 @@ public class PictureHome implements Serializable {
 
     @SuppressWarnings("unchecked")
     private void loadExifTags() {
-	ExifExtractor exifExtractor = new ExifExtractor();
+	ExifExtractorUtil exifExtractor = new ExifExtractorUtil();
 	try {
 	    exifTags = exifExtractor.extractFromFile(new File(pictureService
 		    .getAbsolutePathToPicture(pictureId)));
@@ -111,7 +116,11 @@ public class PictureHome implements Serializable {
     }
 
     private void loadAllTags() {
-	ExifExtractor exifExtractor = new ExifExtractor();
+	if (!set) {
+	    allTags = Collections.EMPTY_LIST;
+	    return;
+	}
+	ExifExtractorUtil exifExtractor = new ExifExtractorUtil();
 	try {
 	    FileInputStream fis = new FileInputStream(new File(
 		    pictureService.getAbsolutePathToPicture(pictureId)));

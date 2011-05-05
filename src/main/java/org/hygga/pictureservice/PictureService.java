@@ -1,5 +1,6 @@
 package org.hygga.pictureservice;
 
+import java.io.File;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -7,8 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hygga.pictureservice.domain.Album;
+import org.hygga.pictureservice.domain.ExifTag;
 import org.hygga.pictureservice.domain.Picture;
 import org.hygga.pictureservice.domain.Shelf;
+import org.hygga.util.HyggaExeption;
 import org.jboss.logging.Logger;
 
 @Stateless
@@ -41,12 +44,28 @@ public class PictureService {
 	return pictures;
     }
 
+    public void updateExifData(long pictureId) {
+	
+	Picture picture = findById(pictureId);
+	String path = getAbsolutePathToPicture(pictureId);
+	ExifExtractorBean eBean = new ExifExtractorBean();
+	try {
+	    eBean.parse(new File(path));
+	    picture.setCreateDate(eBean.getCreateDate());
+	    em.flush();
+	} catch (HyggaExeption e) {
+	    log.warnf("Could not parse exif data. Reason %s", e.getMessage(),e);
+	}
+	
+	
+    }
+
     public String getAbsolutePathToPicture(Long id) {
 	final Picture picture = em.find(Picture.class, id);
 	final Album album = picture.getAlbum();
 	final Shelf shelf = album.getShelf();
-	String path = shelf.getPath() + "/" + album.getPath()
-		+ "/" + picture.getName();
+	String path = shelf.getPath() + "/" + album.getPath() + "/"
+		+ picture.getName();
 	return path;
 
     }

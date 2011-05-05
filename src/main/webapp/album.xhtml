@@ -4,6 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
 	xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="/resources/forge-template.xhtml">
@@ -18,26 +19,36 @@
 			<h:outputText value="#{albumHome.shelf.name}" />
 		</h:outputLink>
 
+		<h:panelGroup>
+			<h4>Admin</h4>
+			<h:form id="albumAdmin">
+				<h:panelGrid columns="1">
+					<h:commandLink action="#{albumController.updateAlbum()}"
+						value="Oppdater album">
+						<f:param name="albumId" value="#{albumHome.album.id}"></f:param>
+					</h:commandLink>
+					<h:commandLink value="Oppdater exif on all picture"
+						action="#{albumController.updateExifOnAllPicturesInAlbum()}">
+						<f:param name="albumId" value="#{albumHome.album.id}"></f:param>
+					</h:commandLink>
+				</h:panelGrid>
+			</h:form>
+
+		</h:panelGroup>
+
 	</ui:define>
 	<ui:define name="main">
 		<h3>Album <h:outputText value="#{albumHome.album.name}" /></h3>
-		<p><h:outputText value="#{albumHome.album.absolutePath}" /></p>
-		<p><h:form id="albumAdmin">
-			<h:commandLink action="#{albumController.updateAlbum()}"
-				value="Oppdater album">
-				<f:param name="albumId" value="#{albumHome.album.id}"></f:param>
-			</h:commandLink>
-		</h:form></p>
+	
 		<h:form id="albumPictureGrid">
-			<rich:dataGrid columns="6" elements="18"
-				value="#{albumHome.pictures}" var="_pic" id="picgrid">
+			<rich:dataGrid columns="6" elements="18" value="#{model.pictures}"
+				var="_pic" id="picgrid">
 				<rich:panel>
 					<f:facet name="header">
 						<h:outputText value="#{_pic.name}" />
 					</f:facet>
 					<h:outputLink value="picture.jsf">
 						<f:param name="pictureId" value="#{_pic.id}" />
-
 						<img
 							src="http://localhost:8080/PictureService/thumb?pictureId=#{_pic.id}"
 							width="150" />
